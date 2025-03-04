@@ -1,5 +1,21 @@
 # Immutability Summary
 
+## Aliasing
+- Multiple references pointing to the same object
+- Changes through one reference affect all references
+- Can lead to unexpected behavior
+- Example:
+  ```java
+  List<Integer> list1 = new ArrayList<>();
+  List<Integer> list2 = list1;  // alias created
+  list1.add(1);  // affects both list1 and list2
+  ```
+
+- Common Issues:
+  1. Unintended modifications
+  2. Debugging complexity
+  3. Concurrency challenges
+
 ## Immutability Concept
 - Objects cannot be modified after creation
 - All fields are final

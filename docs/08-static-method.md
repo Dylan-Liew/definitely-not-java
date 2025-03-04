@@ -77,3 +77,32 @@
 - Keep static methods independent of instance state
 - Consider making utility classes final
 - Document command line arguments clearly
+
+## Factory Methods
+- Static methods that create objects
+- Benefits:
+  1. Better naming than constructors
+  2. Can return cached instances
+  3. Can return different subtypes
+  4. Control object creation
+
+- Example:
+  ```java
+  public class Color {
+    private final int red;
+    private final int green;
+    private final int blue;
+    
+    private Color(int r, int g, int b) {
+      red = r;
+      green = g;
+      blue = b;
+    }
+    
+    public static Color of(int r, int g, int b) {
+      // Validation and caching logic here
+      return new Color(r, g, b);
+    }
+    
+  }
+  ```

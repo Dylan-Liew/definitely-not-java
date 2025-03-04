@@ -40,11 +40,8 @@
 - Must declare checked exceptions
 - Example:
   ```java
-  public void setRadius(double r) throws IllegalArgumentException {
-    if (r < 0) {
-      throw new IllegalArgumentException("Radius cannot be negative");
-    }
-    this.radius = r;
+  public void readFile(String fileName) throws IOException {
+    throw new IOException("File not found");
   }
   ```
 
@@ -93,3 +90,4 @@
     // handle exception
   }
   // reader automatically closed
+  ```

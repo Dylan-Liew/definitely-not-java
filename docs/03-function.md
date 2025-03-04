@@ -62,3 +62,30 @@
   void addToQueue(Queue<Integer> queue, int i) {
     queue.enq(i);  // has side effects on queue
   }
+  ```
+
+## Variable Arguments (Varargs)
+- Allows methods to accept variable number of arguments
+- Uses ellipsis (`...`) in parameter declaration
+- Must be the last parameter in method signature
+- Internally treated as an array
+- Example:
+  ```java
+  void printAll(String... messages) {
+    for (String msg : messages) {
+      System.out.println(msg);
+    }
+  }
+  ```
+- Can be called with:
+  ```java
+  printAll("Hello");                    // one argument
+  printAll("Hello", "World");          // two arguments
+  printAll("A", "B", "C", "D");        // multiple arguments
+  printAll();                          // zero arguments
+  ```
+- Can also be called with an array:
+  ```java
+  String[] messages = {"A", "B", "C"};
+  printAll(messages);                   // passing array directly
+  ```

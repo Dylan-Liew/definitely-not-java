@@ -23,7 +23,8 @@
 
 3. Generic Array Creation:
    ```java
-   List<String>[] array;  // generic array creation
+   List<String>[] array;  // generic array creation 
+   
    ```
 
 ## @SuppressWarnings

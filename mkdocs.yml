@@ -11,6 +11,7 @@ markdown_extensions:
 nav:
   - 0. Home: 'index.md'
   - 1. Program and Compiler: '01-compiler.md'
+  - 1a. Package: '01a-package.md'
   - 2. Variables and Types: '02-type.md'
   - 3. Functions: '03-function.md'
   - 4. Encapsulation: '04-encapsulation.md'

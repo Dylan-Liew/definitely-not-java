@@ -1,0 +1,15 @@
+:root {
+  --md-accent-fg-color:                grey;
+  --md-accent-fg-color--transparent:   grey;
+  --md-accent-bg-color:                hsla(0, 0%, 100%, 1);
+  --md-accent-bg-color--light:         hsla(0, 0%, 100%, 0.7);
+  }
+
+.md-content h1 {
+    margin-bottom: 30px;
+}
+
+.md-content h2 {
+  margin-top: 20px;
+  margin-bottom: 0px;
+}

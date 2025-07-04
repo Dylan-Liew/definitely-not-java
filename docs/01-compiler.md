@@ -4,40 +4,23 @@
 - A program is a collection of data variables and instructions
 - Programs are written in programming languages using keywords, symbols, and names
 - Programming languages provide higher level abstraction for complex instructions
-- Programming languages are used to dictate these instructions to the computer.
+- Programming languages are used to communicate instructions to a computer.
 
-## Program Execution Methods
-- Two main approaches to execute programs:
-    1. Compilation: Translates entire program to machine code before execution
-    2. Interpretation: Reads and executes program statements one at a time
+## Compiler and Interpreter Execution Process
+- Java compiler (`javac`) compiles source code (.java) into bytecode (.class)
+- Compilation:
+  ```
+  javac Hello.java    # compile Hello.java
+  ```
+- JVM (`java`) executes the bytecode by translating it into machine code
+- Execution:
+  ```
+   java Hello         # runs the program
+  ```
+> Notes: [Launch Single-File Source-Code Programs](https://openjdk.org/jeps/330) allows running Java files without explicit compilation. E.g. `java Hello.java`
 
-## Java Execution
-- Two ways to run Java programs:
-    1. Complier and Interpreter
-        - A software tool reads the program written in Java and translates it into bytecode first.
-        - Then during execution, the bytecode is interpreted and complied by Java Virtual Machine(JVM) into machine code
-    2. Interpreter 
-        - Direct interpretation using Java interpreter
-
-## Compilation Process
-- Java compiler (`javac`) compiles source code (.java) to JVM language AKA bytecode (.class)
-- Basic compilation steps:
-  ```
-  javac Hello.java    # creates Hello.class
- 
-  ```
-- Invoke JVM (`java`) and execute the bytecode by interpreting JVM language(bytecode) to Machine language(x86-64).
-- Basic Execution step:
-  ```
-   java Hello          # runs the program
-  
-  ```
-- Common mistakes to avoid:
-    - Confusing `javac` and `java`
-    - [Launch Single-File Source-Code Programs](https://openjdk.org/jeps/330) before compiling. E.g. `java Hello.java`
-
-## Java Shell (jshell)
-- Interactive tool for Java code evaluation (read in Java statements, evaluate them, and print the results.)
+## Java Shell (`jshell`)
+- Interactive tool for Java code evaluation
 - Allows direct code testing without compilation
 - Useful for learning and experimentation
 - Can run in two modes:
@@ -46,10 +29,10 @@
 
 ## Compiler Functions
 - Translates source code to machine code/bytecode
-- Checks code for syntax errors (grammar)
-      - During compilation is still under the control of the programmer.
-      - Runtime error is less desirable as it might occur when customers are running the code.
-      - Try to detect errors as much as possible during compilation instead of Runtime
+- Checks code for syntax errors
+    - Compilation errors are caught during development, allowing programmers to fix them early.
+    - Runtime errors are less desirable because they occur while the program is running, potentially affecting users.
+    - The goal is to catch as many errors as possible at compile time, rather than during execution.
 - Performs type checking
 - Can be either:
     - Conservative: Reports error if possibility of incorrect statement
@@ -61,7 +44,6 @@
 - Cannot always determine variable values at compile time
 
 ## Workflow
-1. Create or edit file containing java program (Hello.java) with an editior (vim). This will be the source code
-2. Compile source code using a compiler (javac Hello.java) to produce a bytecode file (.class)
-3. Execute the program and test
-    - If find incorrect result, restart from the frist step again until the program is desirable.
+1. Create or edit file containing Java program (`Hello.java`) with an editor (`vim`).
+2. Compile source code using a compiler (`javac Hello.java`) to produce a bytecode file (`.class`)
+3. Execute the program (`java Hello`)

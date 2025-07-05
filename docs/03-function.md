@@ -10,7 +10,8 @@
   }
   ```
 - Return type is mandatory (use `void` if no return value)
-- Java doesn't support returning multiple values
+- Java doesn't support returning multiple values. 
+- If returning multiple values is needed, make use of a data type that can store multiple values.
 
 ## Benefits of Functions
 
@@ -19,19 +20,63 @@
 - Limits interactions to parameters and return values
 - Reduces number of variables to track
 - Contains complexity within function body
-
+- Example
+  ```java
+  int factorial(int n) {
+    if (n == 0) {
+      return 1;
+    } else {
+      return n * factorial(n - 1);
+    }
+  }
+  
+  // Approximation of e^n using Taylor series
+  // e^n ≈ 2^0/0! + 2^1/1! + 2^2/2!...
+  double e(int n) {
+    int x = 1; // x stands for n^i
+    double res = 0; // total of the e^n
+    for(int i = 0; i < 10; i++) {
+      res += x / factorial(i);
+      x = x * n;
+    }
+    return res;
+  }
+  // The n in factorial function is different from the n in e function
+  ```
+  
 ### Implementation Hiding
 - Hides how a task is performed
 - Caller only needs to know what function does
 - Reduces information needed between programmers
 - Allows implementation changes without affecting callers
+- Example:
+  ```java
+  double sin(double x) {
+    return Math.sin(x)/x;
+  } 
+  // unnormalised signal processing function
+  // sinc function sinc(x) = sin(x)/x
+  // Caller only needs to know what sinc does, do not need to know the implementation of sinc(x)
+  ```
 
 ### Code Reuse
 - Reduces repeated code through parameterization
 - Makes code more succinct and readable
 - Reduces places that need modification when code evolves
 - Decreases chance of introducing bugs
-
+- Example:
+  ```java
+  double distance(double x1, double y1, double x2, double y2) {
+    double xCoordinates = Math.pow((x2 - x1), 2);
+    double yCoordinates = Math.pow((y2 - y1), 2);
+    return Math.sqrt(xCoordinates + yCoordinates);
+  }
+  double isEquailateral(double x1, double y1, double x2, double y2, double x3, double y3) {
+    return distance(x1, y1, x2, y2) == distance(x1, y1, x3, y3);
+      && distance(x1, y1, x2, y2) == distance(x2, y2, x3, y3); 
+  }
+  // the distance function is defined once and used 4 times.
+  ```
 ## Abstraction Barrier
 - Separates code that calls function from code that implements function
 - Divides programmer roles:
@@ -40,6 +85,27 @@
 - Enforces separation of concerns
 - Allows implementation changes without affecting client code
 - Protects implementation details from client
+- The separation allows collaborative programming when people work on the same codebase.
+- Example:
+  ```java
+  public class MathSquare {
+    private int square(int x){
+      return x * x;
+    } // private function for implementer to hide the logic
+
+    public int useSquare(int x){
+      return square(x);
+    } // public function for clients usage
+  }
+
+  public class Main{
+    public static void main(String[] args) {
+      MathSquare sq = new MathSquare();
+      int result = sq.useSquare(5);
+      System.out.println("The result is:" + result);  
+    }
+  }
+  ```
 
 ## Pure Functions
 - Functions that behave like mathematical functions

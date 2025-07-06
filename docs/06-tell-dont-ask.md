@@ -35,7 +35,7 @@
 
 ## Problems with Accessors/Mutators
 - Can leak implementation details
-- Creates coupling between client and class
+- Creates coupling between client and class (cannot change the name of the accessors or mutators)
 - Makes code harder to maintain
 - Example of coupling:
   ```java
@@ -53,7 +53,13 @@
 - Let objects perform their own operations
 - Better example:
   ```java
-  boolean isInCircle = c.contains(x, y);
+  boolean isInCircle = c.contains(x, y); // create a method in the Circle class so that to tell objects what to do
+  ```
+  ```java
+  double cX = c.getX();
+  double cY = c.getY();
+  double r = c.getR();
+  boolean isInCircle = ((x - cX) * (x - cX) + (y - cY) * (y - cY)) <= r * r; // instead of ask for internal state
   ```
 
 ## Benefits of Tell, Don't Ask
@@ -64,7 +70,7 @@
 - Allows implementation changes without affecting clients
 
 ## Guidelines
-- Tasks performed only on class fields should be in that class
+- Tasks involve only class fields should be in that class
 - Avoid getters/setters unless absolutely necessary
 - Think in terms of object responsibilities
 - Focus on object behavior rather than state

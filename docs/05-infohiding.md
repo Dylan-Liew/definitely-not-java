@@ -4,18 +4,22 @@
 - Direct access to internal fields breaks abstraction
 - Example problem:
   ```java
+  Circle c = new Circle();
   c.r = 10;  // directly modifying radius
   ```
 - Makes code dependent on implementation details
 - Changes to implementation can break client code
 - Reduces code maintainability
+- As an implementer, expose as few fields/methods as possible
+- As a client, follow the behavior as stated in the actual specification such `Java API`.
 
 ## Access Modifiers
 - Java provides access control through modifiers:
     - `private`: Only accessible within the class
     - `public`: Accessible from anywhere
-- Default access (no modifier) exists but not covered
-- Access control enforced by compiler
+- Default access (no modifier) exists but not covered, it is package private
+- Access control enforced by compiler at compile time
+- Different objects which have same class can access the fields and methods within the class
 - Example:
   ```java
   class Circle {
@@ -27,6 +31,10 @@
       return 3.141592653589793 * r * r;
     }
   }
+
+  // Testing
+  Circle c  = new Circle();
+  c.r = 10; // error
   ```
 
 ## Access Modifier Summary Table
@@ -36,7 +44,11 @@
 | Outside class | No | Yes |
 
 ## Constructors
-- Special methods to initialize objects
+- Behavior of a constructor
+    - Allocate memory for all fields and assign the reference to `this`.
+    - Invoke the constructor function and passing the keyword `this` implicitly.
+    - Once the constructor is done, return the reference pointed to by `this` back.
+- Special methods for clients to initialize objects
 - Same name as class
 - No return type
 - Called automatically with `new`
@@ -62,7 +74,7 @@
 - Example:
   ```java
   Circle() {
-  }
+  } // no parameter and no code written for the body
   ```
 - Not provided if any constructor is defined
 

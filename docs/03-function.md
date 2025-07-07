@@ -10,8 +10,8 @@
   }
   ```
 - Return type is mandatory (use `void` if no return value)
-- Java doesn't support returning multiple values. 
-- If returning multiple values is needed, make use of a data type that can store multiple values.
+- Java doesn't support returning multiple values
+- If returning multiple values is needed, use a data type that can store multiple values
 
 ## Benefits of Functions
 
@@ -31,7 +31,7 @@
   }
   
   // Approximation of e^n using Taylor series
-  // e^n ≈ 2^0/0! + 2^1/1! + 2^2/2!...
+  // e^n ≈ 1^0/0! + n^1/1! + n^2/2! + ...
   double e(int n) {
     int x = 1; // x stands for n^i
     double res = 0; // total of the e^n
@@ -51,12 +51,12 @@
 - Allows implementation changes without affecting callers
 - Example:
   ```java
-  double sin(double x) {
-    return Math.sin(x)/x;
+  double sinc(double x) {
+    return Math.sin(x) / x;
   } 
-  // unnormalised signal processing function
+  // Unnormalized signal processing function
   // sinc function sinc(x) = sin(x)/x
-  // Caller only needs to know what sinc does, do not need to know the implementation of sinc(x)
+  // Caller only needs to know what sinc does, not the implementation details
   ```
 
 ### Code Reuse
@@ -71,12 +71,13 @@
     double yCoordinates = Math.pow((y2 - y1), 2);
     return Math.sqrt(xCoordinates + yCoordinates);
   }
-  double isEquailateral(double x1, double y1, double x2, double y2, double x3, double y3) {
-    return distance(x1, y1, x2, y2) == distance(x1, y1, x3, y3);
-      && distance(x1, y1, x2, y2) == distance(x2, y2, x3, y3); 
+  
+  boolean isEquilateral(double x1, double y1, double x2, double y2, double x3, double y3) {
+    return distance(x1, y1, x2, y2) == distance(x1, y1, x3, y3)
+        && distance(x1, y1, x2, y2) == distance(x2, y2, x3, y3); 
   }
-  // the distance function is defined once and used 4 times.
   ```
+
 ## Abstraction Barrier
 - Separates code that calls function from code that implements function
 - Divides programmer roles:
@@ -85,24 +86,24 @@
 - Enforces separation of concerns
 - Allows implementation changes without affecting client code
 - Protects implementation details from client
-- The separation allows collaborative programming when people work on the same codebase.
+- The separation allows collaborative programming when people work on the same codebase
 - Example:
   ```java
   public class MathSquare {
-    private int square(int x){
+    private int square(int x) {
       return x * x;
     } // private function for implementer to hide the logic
 
-    public int useSquare(int x){
+    public int useSquare(int x) {
       return square(x);
-    } // public function for clients usage
+    } // public function for client usage
   }
 
-  public class Main{
+  public class Main {
     public static void main(String[] args) {
       MathSquare sq = new MathSquare();
       int result = sq.useSquare(5);
-      System.out.println("The result is:" + result);  
+      System.out.println("The result is: " + result);  
     }
   }
   ```

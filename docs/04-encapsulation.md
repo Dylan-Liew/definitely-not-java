@@ -8,7 +8,7 @@
 
 ## Class and Object
 - Class: Bundles composite data type with associated functions
-- Using Class abstraction as a tool to define composite data type and add methods that operate on the data (fields).
+- Uses class abstraction as a tool to define composite data type and add methods that operate on the data (fields)
 - Components:
     - Fields (also called states, attributes, or properties)
     - Methods (functions that operate on the fields)
@@ -25,15 +25,16 @@
     }
   }
   ```
+
 ## Encapsulation
 - Keep all the data (fields) and functions (methods) operating on the data (fields) related to a composite data type together within an abstraction barrier
 
 ## Object Creation and Access
 - Objects created using `new` keyword
-- Objects as instances of a class
-  - Each object allows the same methods to be called.
-  - Each object containing the same set of variables of the same types.
-  - Each object may store different values.
+- Objects as instances of a class:
+  - Each object allows the same methods to be called
+  - Each object contains the same set of variables of the same types
+  - Each object may store different values
 - Access fields and methods using dot `.` notation
 - Example:
   ```java

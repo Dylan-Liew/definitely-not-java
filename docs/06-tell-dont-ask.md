@@ -53,13 +53,14 @@
 - Let objects perform their own operations
 - Better example:
   ```java
-  boolean isInCircle = c.contains(x, y); // create a method in the Circle class so that to tell objects what to do
-  ```
-  ```java
+  // Tell the object what to do
+  boolean isInCircle = c.contains(x, y);
+  
+  // Instead of asking for internal state
   double cX = c.getX();
   double cY = c.getY();
   double r = c.getR();
-  boolean isInCircle = ((x - cX) * (x - cX) + (y - cY) * (y - cY)) <= r * r; // instead of ask for internal state
+  boolean isInCircle = ((x - cX) * (x - cX) + (y - cY) * (y - cY)) <= r * r;
   ```
 
 ## Benefits of Tell, Don't Ask
@@ -70,7 +71,7 @@
 - Allows implementation changes without affecting clients
 
 ## Guidelines
-- Tasks involve only class fields should be in that class
+- Tasks involving only class fields should be in that class
 - Avoid getters/setters unless absolutely necessary
 - Think in terms of object responsibilities
 - Focus on object behavior rather than state

@@ -7,7 +7,10 @@
 - Can be accessed without creating class instance
 - Example:
   ```java
+<<<<<<< HEAD
   // Universal field: PI
+=======
+>>>>>>> 894be436c0b17707585c67c478dfebd5ce9f6884
   class Math {
     public static final double PI = 3.141592653589793;
   }
@@ -17,6 +20,7 @@
 - `static`: Makes field belong to class
 - `final`: Makes field value unchangeable
 - `public`: Makes field accessible outside class
+<<<<<<< HEAD
 - Common combination: `public static final` for defining globally accessible constants.
 
 ## Accessing Class Fields
@@ -27,10 +31,17 @@
   return java.lang.Math.PI * this.r * this.r;
   }
   ```
+=======
+- Common combination: `public static final` for constants
+
+## Accessing Class Fields
+- Access through class name: `Math.PI`
+>>>>>>> 894be436c0b17707585c67c478dfebd5ce9f6884
 - Can use import statement to simplify access
 - Example:
   ```java
   import java.lang.Math;
+<<<<<<< HEAD
   
   // Now can use Math.PI directly
   public double Circumference() {
@@ -49,6 +60,22 @@
     - Single copy shared by all instances
     - Accessed through class name
     - Loaded into memory when class is loaded by JVM, even if no objects are created
+=======
+  // Now can use Math.PI directly
+  ```
+
+## Instance Fields vs Class Fields
+- Instance fields:
+    - Belong to specific object instances
+    - Each instance has its own copy
+    - Accessed through object reference
+  
+- Class fields:
+    - Belong to class itself
+    - Single copy shared by all instances
+    - Accessed through class name
+    - Exist even if no instances created
+>>>>>>> 894be436c0b17707585c67c478dfebd5ce9f6884
 
 ## Example Usage
 ```java
@@ -72,6 +99,7 @@ class Circle {
 - Make class fields final when possible
 - Use meaningful names for constants
 - Consider using existing constants (e.g., Math.PI)
+<<<<<<< HEAD
 
 > Notes: 
 - Lifecycle and Memory behavior:
@@ -104,3 +132,5 @@ class Circle {
             public static final String TYPE = "2D";
           } 
           ```
+=======
+>>>>>>> 894be436c0b17707585c67c478dfebd5ce9f6884

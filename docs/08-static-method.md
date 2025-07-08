@@ -40,7 +40,7 @@
   class A {
     private int x;
     public static void foo() {
-      this.x = 1;  // Error: cannot use this
+      this.x = 1;  // Error: cannot use `this`
       x = 1;       // Error: cannot access instance field
     }
   }
@@ -133,3 +133,42 @@
     
   }
   ```
+
+
+> Notes:
+- Static methods and inheritance
+    - Static methods are not overridden, they are hidden
+    - Call is resolved at compile time, based on the reference type
+    - Example:
+      ```java
+      class A {
+        static void sayHello() {
+          System.out.println("Hello from A");
+        }
+      }
+
+      class B extends A {
+        static void sayHello() {
+          System.out.println("Hello from B");
+        }
+      }
+
+      A a = new B();
+      a.sayHello(); // prints: Hello from A
+      ```
+- Static method vs Singleton pattern
+    - Use Static Method:
+        - When you have utility methods that do not require state.
+        - When thread safety and shared mutable state are not concerns.
+    - Use Singleton:
+        - When you need a single, globally accessible instance with mutable state.
+        - When managing resources that should be shared among multiple parts of the application.
+- Thread safety in static methods
+    - Static methods can become unsafe in a multithreaded context if:
+        - Modify static mutable fields
+        - Depend on shared resources
+    - Use `synchronized` or other concurrency controls when necessary
+- Use in testing and mocking
+    - Static methods are harder to mock in unit tests.
+    - Best to avoid static if testability is a priority.
+    - Frameworks like PowerMockito can be used to mock static methods.

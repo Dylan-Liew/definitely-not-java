@@ -156,6 +156,7 @@
       A a = new B();
       a.sayHello(); // prints: Hello from A
       ```
+
 - Static method vs Singleton pattern
     - Use Static Method:
         - When you have utility methods that do not require state.
@@ -163,11 +164,13 @@
     - Use Singleton:
         - When you need a single, globally accessible instance with mutable state.
         - When managing resources that should be shared among multiple parts of the application.
+
 - Thread safety in static methods
     - Static methods can become unsafe in a multithreaded context if:
         - Modify static mutable fields
         - Depend on shared resources
     - Use `synchronized` or other concurrency controls when necessary
+
 - Use in testing and mocking
     - Static methods are harder to mock in unit tests.
     - Best to avoid static if testability is a priority.

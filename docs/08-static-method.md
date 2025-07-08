@@ -158,10 +158,10 @@
       ```
 
 - Static method vs Singleton pattern
-    - Use Static Method:
+    - Use static method:
         - When you have utility methods that do not require state.
         - When thread safety and shared mutable state are not concerns.
-    - Use Singleton:
+    - Use singleton:
         - When you need a single, globally accessible instance with mutable state.
         - When managing resources that should be shared among multiple parts of the application.
 

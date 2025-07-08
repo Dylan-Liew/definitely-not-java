@@ -20,7 +20,9 @@
     - Belong to class
     - Can only access static members
     - Called through class name
-    - No access to `this`
+    - No access to `this` 
+        - Static method exists without instantiating the class 
+        - `this` refers to a specific object instance, which static methods do not have 
   
 - Non-static methods:
     - Belong to instances
@@ -58,8 +60,8 @@
     - Name must be `main`
 
 ## Command Line Arguments
-- Passed to main method in String array
-- Available through `args` parameter
+- Passed to `String[]` array of main method
+- `args` parameter stores command line arguments
 - Example:
   ```java
   public static void main(String[] args) {
@@ -71,8 +73,33 @@
 
 ## Best Practices
 - Use static methods for:
-    - Utility functions
-    - Operations not requiring instance state
+    - Utility functions that perform general operations and don't depend on instance state (data)
+        - Example:
+        ```java
+        class MathUtils {
+          public static int square(int x) {
+            return x * x;
+          }
+        }
+        ```
+    - Accessing or managing static fields
+        - Example:
+        ```java
+        class Circle {
+          private final int id;
+          private static int lastId = 0;
+
+          public Circle() {
+            this.id = Circle.lastId;
+            Circle.lastId += 1;
+          }
+
+          // Access static field
+          public static int getNumOfCircles() {
+            return Circle.lastId;
+          }
+        }
+        ```
     - Factory methods
 - Keep static methods independent of instance state
 - Consider making utility classes final
@@ -81,10 +108,10 @@
 ## Factory Methods
 - Static methods that create objects
 - Benefits:
-  1. Better naming than constructors
-  2. Can return cached instances
-  3. Can return different subtypes
-  4. Control object creation
+  1. When object creation needs to be controlled 
+  2. Better naming than constructors
+  3. Can return cached instances
+  4. Can return different subtypes 
 
 - Example:
   ```java

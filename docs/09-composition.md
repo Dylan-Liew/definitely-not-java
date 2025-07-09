@@ -27,17 +27,17 @@ class Point {
 }
 
 class Circle {
-  private Point center;
+  private Point center; // Circle HAS-A Point
   private double radius;
 }
 
 class Cylinder {
-  private Circle base;
+  private Circle base; // Cylinder HAS-A Circle
   private double height;
 }
 ```
 
-## Reference Sharing Issues
+## Reference Sharing Issues (Aliasing)
 - Objects can share references to components
 - Changes to shared components affect all objects
 - Example of problematic sharing:
@@ -59,6 +59,7 @@ class Cylinder {
 
 2. Create Defensive Copies
    ```java
+   // Defensive copy ensures that external changes to `c` do not affect Circle
    class Circle {
      public Circle(Point c, double r) {
        this.c = new Point(c.getX(), c.getY());
@@ -81,3 +82,77 @@ class Cylinder {
 - Use defensive copying when appropriate
 - Consider making objects immutable
 - Design classes to prevent accidental sharing
+
+
+> Notes:
+- Composition over inheritance principle
+    - Composition offers better flexibility, looser coupling and encapsulation
+        - Example:
+          ```java
+          class Order {
+            // private composition
+            private Payment payment;
+
+            public boolean isPaid() {
+              return payment != null && payment.status().equals("SUCCESS");
+            }
+          }
+          ```
+    - Inheritance ties classes rigidly and breaks encapsulation by exposing superclass internals
+
+- Polymorphic composition
+    - Compose a class using interfaces or abstract classes
+    - Allow dynamic behavior injection for different implementations
+    - Example
+      ```java
+      // Different types of Engine can be implemented for different Car
+      interface Engine {
+        void start();
+      }
+
+      class PetrolEngine implements Engine {
+        @Override
+        public void start() {
+          System.out.println("Petrol engine starting...");
+        }
+      }
+      
+      class Car {
+        private Engine engine;
+
+        public Car(Engine engine) {
+          this.engine = engine;
+        }
+
+        public void drive() {
+          engine.start();
+        }
+      }
+      ```
+
+- Decorator pattern
+    - A structural design pattern
+    - Allows attaching new responsibilities to an object dynamically
+    - Adds behavior at runtime
+    - Example:
+      ```java
+      interface Coffee {
+        double cost();
+      }
+
+      class BasicCoffee implements Coffee {
+        public double cost() { return 2.0; }
+      }
+
+      class MilkDecorator implements Coffee {
+        private final Coffee base; // Composition
+        public MilkDecorator(Coffee base) {
+          this.base = base;
+        }
+        public double cost() {
+          return base.cost() + 0.5;
+        }
+      }
+      ```
+
+  

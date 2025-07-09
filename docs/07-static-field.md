@@ -24,7 +24,7 @@
 - Example:
   ```java
   public double getArea() {
-  return java.lang.Math.PI * this.r * this.r;
+    return java.lang.Math.PI * this.r * this.r;
   }
   ```
 - Can use import statement to simplify access
@@ -39,7 +39,7 @@
   ```
 
 ## Instance Fields vs Class Fields
-- Instance fields (Non-static field):
+- Instance fields (non-static field):
     - Belong to specific object instances
     - Each object has its own separate copy of the field
     - Accessed through object reference
@@ -73,11 +73,15 @@ class Circle {
 - Use meaningful names for constants
 - Consider using existing constants (e.g., Math.PI)
 
+
 > Notes: 
 - Lifecycle and Memory behavior:
     - Static fields are initialised exactly once when the class is first loaded by the JVM.
-    - static fields may lead to memory leaks if it stores large objects like Lists or Maps in them. 
-      Additionally, if forget to clear the large objects, they will never get garbage collected.
+    - Static fields may lead to memory leaks 
+        - Java uses automatic garbage collection
+        - Objects aren't collected if still referenced
+        - Static fields are tied to the class for its lifetime
+        - Large objects held by static fields remains reachable and uncollected, potentially causing memory leaks
     - Static blocks for complex static initalisation
         - Example:
         ```java
@@ -85,13 +89,14 @@ class Circle {
           CONFIG = loadConfig("app.properties");
         }
         ```
+
 - Sharing and Access behavior:
     - Instance-specific data like `name`, `balance` or `id` should NOT be static
     - Good practice in accessing static fields using class name, not object reference
     - All fields in interfaces are implicitly public, static and final.
 
 - Immutability and Thread safety
-    - Mutable static fields are shared by all threads, needs synchronization if shared across threads
+    - Mutable static fields are shared by all threads and need synchronization if shared across threads
     - Final instance fields are immutable.
 
 - Design Patterns

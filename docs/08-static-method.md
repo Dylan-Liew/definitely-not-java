@@ -20,7 +20,9 @@
     - Belong to class
     - Can only access static members
     - Called through class name
-    - No access to `this`
+    - No access to `this` 
+        - Static method exists without instantiating the class 
+        - `this` refers to a specific object instance, which static methods do not have 
   
 - Non-static methods:
     - Belong to instances
@@ -38,7 +40,7 @@
   class A {
     private int x;
     public static void foo() {
-      this.x = 1;  // Error: cannot use this
+      this.x = 1;  // Error: cannot use `this`
       x = 1;       // Error: cannot access instance field
     }
   }
@@ -58,8 +60,8 @@
     - Name must be `main`
 
 ## Command Line Arguments
-- Passed to main method in String array
-- Available through `args` parameter
+- Passed to `String[]` array of main method
+- `args` parameter stores command line arguments
 - Example:
   ```java
   public static void main(String[] args) {
@@ -71,8 +73,33 @@
 
 ## Best Practices
 - Use static methods for:
-    - Utility functions
-    - Operations not requiring instance state
+    - Utility functions that perform general operations and don't depend on instance state (data)
+        - Example:
+        ```java
+        class MathUtils {
+          public static int square(int x) {
+            return x * x;
+          }
+        }
+        ```
+    - Accessing or managing static fields
+        - Example:
+        ```java
+        class Circle {
+          private final int id;
+          private static int lastId = 0;
+
+          public Circle() {
+            this.id = Circle.lastId;
+            Circle.lastId += 1;
+          }
+
+          // Access static field
+          public static int getNumOfCircles() {
+            return Circle.lastId;
+          }
+        }
+        ```
     - Factory methods
 - Keep static methods independent of instance state
 - Consider making utility classes final
@@ -81,10 +108,10 @@
 ## Factory Methods
 - Static methods that create objects
 - Benefits:
-  1. Better naming than constructors
-  2. Can return cached instances
-  3. Can return different subtypes
-  4. Control object creation
+  1. When object creation needs to be controlled 
+  2. Better naming than constructors
+  3. Can return cached instances
+  4. Can return different subtypes 
 
 - Example:
   ```java
@@ -106,3 +133,45 @@
     
   }
   ```
+
+
+> Notes:
+- Static methods and inheritance
+    - Static methods are not overridden, they are hidden
+    - Call is resolved at compile time, based on the reference type
+    - Example:
+      ```java
+      class A {
+        static void sayHello() {
+          System.out.println("Hello from A");
+        }
+      }
+
+      class B extends A {
+        static void sayHello() {
+          System.out.println("Hello from B");
+        }
+      }
+
+      A a = new B();
+      a.sayHello(); // prints: Hello from A
+      ```
+
+- Static method vs Singleton pattern
+    - Use static method:
+        - When you have utility methods that do not require state.
+        - When thread safety and shared mutable state are not concerns.
+    - Use singleton:
+        - When you need a single, globally accessible instance with mutable state.
+        - When managing resources that should be shared among multiple parts of the application.
+
+- Thread safety in static methods
+    - Static methods can become unsafe in a multithreaded context if:
+        - Modify static mutable fields
+        - Depend on shared resources
+    - Use `synchronized` or other concurrency controls when necessary
+
+- Use in testing and mocking
+    - Static methods are harder to mock in unit tests.
+    - Best to avoid static if testability is a priority.
+    - Frameworks like PowerMockito can be used to mock static methods.

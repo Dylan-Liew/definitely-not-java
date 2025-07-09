@@ -85,7 +85,8 @@ class Cylinder {
 
 
 > Notes:
-- Composition over inheritance principle
+
+>- Composition over inheritance principle
     - Composition offers better flexibility, looser coupling and encapsulation
         - Example:
           ```java
@@ -99,7 +100,6 @@ class Cylinder {
           }
           ```
     - Inheritance ties classes rigidly and breaks encapsulation by exposing superclass internals
-
 - Polymorphic composition
     - Compose a class using interfaces or abstract classes
     - Allow dynamic behavior injection for different implementations
@@ -129,7 +129,6 @@ class Cylinder {
         }
       }
       ```
-
 - Decorator pattern
     - A structural design pattern
     - Allows attaching new responsibilities to an object dynamically
@@ -154,5 +153,4 @@ class Cylinder {
         }
       }
       ```
-
   

@@ -24,36 +24,76 @@
 - Contains:
     - Class name
     - Instance fields and values
-    - Captured variables
+    - Captured variables (Nested Class)
 - No LIFO restriction
 
 ## Example Stack and Heap Interactions
 ```java
-Point p;                    // Stack: p (uninitialized)
-p = new Point(1, 2);       // Heap: Point object
-                          // Stack: p (reference to Point)
+Point p;                  // Stack: p (uninitialised)
 
-Circle c = new Circle(p, 3); // Heap: Circle object
-                           // Stack: c (reference to Circle)
+p = new Point(1, 2);      // Heap: Point object
+                          // Stack: p (reference to Point)
+                          // Creates call frame for Point constructor
+
 ```
+=== "After Line 1"
+    ![After Line 1](image/heap-and-stack-point-afterLine1.png)
+=== "Allocate Memory"
+    ![Allocate Memory](image/heap-and-stack-point-allocateMemory.png)
+=== "Invoke Constructor"
+    ![Invoke Constructor](image/heap-and-stack-point-invokeConstructor.png)
+=== "End of Constructor"
+    ![End of Constructor](image/heap-and-stack-point-endOfConstructor.png)
+=== "Return from Constructor"
+    ![Return from Constructor](image/heap-and-stack-point-returnFromConstructor.png)
+- Symbol ∅ to indicate that the variable is not yet initialized
+- For presentation, memory address (e.g., 9048ab50) will be omitted 
+- Each constructor call creates a new frame
+- Frame contains:
+    - `this` reference
+    - Constructor parameters
+    - Local variables 
 
 ## Constructor Example
 ```java
 Point p1 = new Point(0, 0);  // Creates call frame for Point constructor
 Point p2 = new Point(1, 1);  // Creates new call frame
 ```
-- Each constructor call creates new frame
-- Frame contains:
-    - `this` reference
-    - Constructor parameters
-    - Local variables
 
 ## Method Call Example
 ```java
-void foo(Point p) {
-  int x = p.getX();  // Creates call frame for getX
+class Point {
+  private double x;
+  private double y;
+
+  public Point(double x, double y) {
+    this.x = x;
+    this.y = y;
+  }
+
+  public void move(double x, double y) {
+    this.x = x;
+    this.y = y;
+  }
 }
 ```
+
+```java
+Point p1 = new Point(0, 0);
+Point p2 = new Point(1, 1);
+double x = 5;
+double y = 5;
+p1.move(x, y);
+```
+=== "After Lines 1-2"
+    ![After Line 1-2](image/method-call-example-afterLine1-2.png)
+=== "After Lines 3-4"
+    ![Allocate Memory](image/method-call-example-afterLine3-4.png)
+=== "Method Invocation at Line 5"
+    ![Invoke Constructor](image/method-call-example-methodInvocationatLine5.png)
+=== "After Line 5"
+    ![End of Constructor](image/method-call-example-afterLine5.png)
+
 - Method call creates new frame
 - Frame destroyed after method returns
 - Parameters copied to new frame

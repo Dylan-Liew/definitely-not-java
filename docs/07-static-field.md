@@ -90,6 +90,7 @@ class Circle {
           CONFIG = loadConfig("app.properties");
         }
         ```
+
 - Sharing and Access behavior:
     - Instance-specific data like `name`, `balance` or `id` should NOT be static
     - Good practice in accessing static fields using class name, not object reference

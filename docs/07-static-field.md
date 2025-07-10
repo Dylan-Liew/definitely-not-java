@@ -75,7 +75,8 @@ class Circle {
 
 
 > Notes: 
-- Lifecycle and Memory behavior:
+
+>- Lifecycle and Memory behavior:
     - Static fields are initialised exactly once when the class is first loaded by the JVM.
     - Static fields may lead to memory leaks 
         - Java uses automatic garbage collection
@@ -94,11 +95,9 @@ class Circle {
     - Instance-specific data like `name`, `balance` or `id` should NOT be static
     - Good practice in accessing static fields using class name, not object reference
     - All fields in interfaces are implicitly public, static and final.
-
 - Immutability and Thread safety
     - Mutable static fields are shared by all threads and need synchronization if shared across threads
     - Final instance fields are immutable.
-
 - Design Patterns
     - Use static fields for configuration or constants like `MAX_USERS`, not temporary or user-specific values.
     - Static fields can be used for shared logic or metadata across tightly controlled subclasses.

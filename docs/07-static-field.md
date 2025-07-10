@@ -25,7 +25,6 @@
   ```java
   public double getArea() {
     return java.lang.Math.PI * this.r * this.r;
-    return java.lang.Math.PI * this.r * this.r;
   }
   ```
 - Can use import statement to simplify access
@@ -40,7 +39,6 @@
   ```
 
 ## Instance Fields vs Class Fields
-- Instance fields (non-static field):
 - Instance fields (non-static field):
     - Belong to specific object instances
     - Each object has its own separate copy of the field

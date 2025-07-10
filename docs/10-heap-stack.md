@@ -7,34 +7,30 @@
 - Stack: Stores local variables and call frames
 
 ## Stack
-- Contains variables (not instance/class fields)
-- Organized in call frames
-- LIFO (Last-In-First-Out) structure
-- Call frames:
-    - Created when method invoked
-    - Removed when method completes
-    - Contains local variables
-    - Contains method parameters
-    - Contains reference to `this` (for non-static methods)
+- Holds local variables (not instance or class fields)
+- Organized into call frames (one per method call)
+- Follows a Last-In-First-Out (LIFO) order
+- Each call frame contains:
+    - Local variables
+    - Method parameters
+    - Reference to `this` (for non-static methods)
+- A new frame is created when a method is called and removed when the method finishes
 
 ## Heap
 - Stores objects created with `new`
-- Objects persist across method calls
-- Can be shared between methods
-- Contains:
+- Objects can be shared between methods and variables
+- Each object contains:
     - Class name
-    - Instance fields and values
-    - Captured variables (Nested Class)
-- No LIFO restriction
+    - Instance fields and their values
+    - Captured variables (for nested classes)
+- No LIFO restriction; objects can outlive the methods that created them
 
-## Example Stack and Heap Interactions
+## Constructor Example
 ```java
-Point p;                  // Stack: p (uninitialised)
-
-p = new Point(1, 2);      // Heap: Point object
-                          // Stack: p (reference to Point)
-                          // Creates call frame for Point constructor
-
+Point p;                  // Stack: p (uninitialized)
+p = new Point(1, 2);      // Heap: new Point object
+                          // Stack: p now references the Point
+                          // Constructor call creates a new call frame
 ```
 === "After Line 1"
     ![After Line 1](image/heap-and-stack-point-afterLine1.png)
@@ -46,19 +42,12 @@ p = new Point(1, 2);      // Heap: Point object
     ![End of Constructor](image/heap-and-stack-point-endOfConstructor.png)
 === "Return from Constructor"
     ![Return from Constructor](image/heap-and-stack-point-returnFromConstructor.png)
-- Symbol ∅ to indicate that the variable is not yet initialized
-- For presentation, memory address (e.g., 9048ab50) will be omitted 
-- Each constructor call creates a new frame
-- Frame contains:
-    - `this` reference
-    - Constructor parameters
-    - Local variables 
 
-## Constructor Example
-```java
-Point p1 = new Point(0, 0);  // Creates call frame for Point constructor
-Point p2 = new Point(1, 1);  // Creates new call frame
-```
+- The symbol ∅ indicates an uninitialized variable
+- Each constructor call creates a new stack frame containing:
+    - The `this` reference
+    - Constructor parameters
+    - Local variables
 
 ## Method Call Example
 ```java
@@ -76,9 +65,7 @@ class Point {
     this.y = y;
   }
 }
-```
 
-```java
 Point p1 = new Point(0, 0);
 Point p2 = new Point(1, 1);
 double x = 5;
@@ -94,25 +81,13 @@ p1.move(x, y);
 === "After Line 5"
     ![End of Constructor](image/method-call-example-afterLine5.png)
 
-- Method call creates new frame
-- Frame destroyed after method returns
-- Parameters copied to new frame
-
-## Call Stack Behavior
-- Methods can be nested
-- Each nested call adds new frame
-- Frames removed in reverse order
-- Example:
-  ```java
-  a() {
-    b();      // b's frame stacked on a's
-    return;   // b's frame removed, back to a's
-  }
-  ```
+- Each method call creates a new stack frame
+- The frame is destroyed when the method returns
+- Method parameters are copied into the new frame
 
 ## Best Practices
-- Understand object lifetime
-- Be aware of object sharing
-- Consider stack vs heap allocation
+- Understand the lifetime of objects and variables
+- Be aware of when objects are shared or referenced
+- Know the difference between stack and heap allocation
 - Clean up references when no longer needed
 - Be mindful of memory usage patterns

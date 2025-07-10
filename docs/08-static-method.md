@@ -132,3 +132,4 @@
 - Keep static methods independent of instance state
 - Consider making utility classes final
 - Document command line arguments clearly
+

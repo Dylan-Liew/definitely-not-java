@@ -6,7 +6,9 @@ markdown_extensions:
   - tables
   - admonition
   - pymdownx.superfences
-  - pymdownx.tabbed
+  - pymdownx.tabbed:
+      alternate_style: true
+      combine_header_slug: true
 
 nav:
   - 0. Home: 'index.md'

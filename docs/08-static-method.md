@@ -71,40 +71,6 @@
   }
   ```
 
-## Best Practices
-- Use static methods for:
-    - Utility functions that perform general operations and don't depend on instance state (data)
-        - Example:
-        ```java
-        class MathUtils {
-          public static int square(int x) {
-            return x * x;
-          }
-        }
-        ```
-    - Accessing or managing static fields
-        - Example:
-        ```java
-        class Circle {
-          private final int id;
-          private static int lastId = 0;
-
-          public Circle() {
-            this.id = Circle.lastId;
-            Circle.lastId += 1;
-          }
-
-          // Access static field
-          public static int getNumOfCircles() {
-            return Circle.lastId;
-          }
-        }
-        ```
-    - Factory methods
-- Keep static methods independent of instance state
-- Consider making utility classes final
-- Document command line arguments clearly
-
 ## Factory Methods
 - Static methods that create objects
 - Benefits:
@@ -134,42 +100,35 @@
   }
   ```
 
-
-> Notes:
-
->- Static methods and inheritance
-    - Static methods are not overridden, they are hidden
-    - Call is resolved at compile time, based on the reference type
-    - Example:
-      ```java
-      class A {
-        static void sayHello() {
-          System.out.println("Hello from A");
+## Best Practices
+- Use static methods for:
+    - Utility functions that perform general operations and don't depend on instance state (data)
+        - Example:
+        ```java
+        class MathUtils {
+          public static int square(int x) {
+            return x * x;
+          }
         }
-      }
+        ```
+    - Accessing or managing static fields
+        - Example:
+        ```java
+        class Circle {
+          private final int id;
+          private static int lastId = 0;
 
-      class B extends A {
-        static void sayHello() {
-          System.out.println("Hello from B");
+          public Circle() {
+            this.id = Circle.lastId;
+            Circle.lastId += 1;
+          }
+
+          // Access static field
+          public static int getNumOfCircles() {
+            return Circle.lastId;
+          }
         }
-      }
-
-      A a = new B();
-      a.sayHello(); // prints: Hello from A
-      ```
-- Static method vs Singleton pattern
-    - Use static method:
-        - When you have utility methods that do not require state.
-        - When thread safety and shared mutable state are not concerns.
-    - Use singleton:
-        - When you need a single, globally accessible instance with mutable state.
-        - When managing resources that should be shared among multiple parts of the application.
-- Thread safety in static methods
-    - Static methods can become unsafe in a multithreaded context if:
-        - Modify static mutable fields
-        - Depend on shared resources
-    - Use `synchronized` or other concurrency controls when necessary
-- Use in testing and mocking
-    - Static methods are harder to mock in unit tests.
-    - Best to avoid static if testability is a priority.
-    - Frameworks like PowerMockito can be used to mock static methods.
+        ```
+- Keep static methods independent of instance state
+- Consider making utility classes final
+- Document command line arguments clearly

@@ -32,16 +32,16 @@ p = new Point(1, 2);      // Heap: new Point object
                           // Stack: p now references the Point
                           // Constructor call creates a new call frame
 ```
-=== "After Line 1"
-    ![After Line 1](image/heap-and-stack-point-afterLine1.png)
-=== "Allocate Memory"
-    ![Allocate Memory](image/heap-and-stack-point-allocateMemory.png)
-=== "Invoke Constructor"
-    ![Invoke Constructor](image/heap-and-stack-point-invokeConstructor.png)
-=== "End of Constructor"
-    ![End of Constructor](image/heap-and-stack-point-endOfConstructor.png)
-=== "Return from Constructor"
-    ![Return from Constructor](image/heap-and-stack-point-returnFromConstructor.png)
+=== "Declare Point variable on stack (null placeholder)"
+    ![Declare Point variable on stack (null placeholder)](image/constructor-example-1.png)
+=== "Allocate Point object on heap"
+    ![Allocate Point object on heap](image/constructor-example-2.png)
+=== "Invoke Constructor (new Point(1, 2))"
+    ![Invoke Constructor (new Point(1, 2))](image/constructor-example-3.png)
+=== "Constructor completes (pop frame)"
+    ![Constructor completes (pop frame)](image/constructor-example-4.png)
+=== "Assign object reference to p"
+    ![Assgin object reference to p](image/constructor-example-5.png)
 
 - The symbol ∅ indicates an uninitialized variable
 - Each constructor call creates a new stack frame containing:
@@ -72,14 +72,14 @@ double x = 5;
 double y = 5;
 p1.move(x, y);
 ```
-=== "After Lines 1-2"
-    ![After Line 1-2](image/method-call-example-afterLine1-2.png)
-=== "After Lines 3-4"
-    ![Allocate Memory](image/method-call-example-afterLine3-4.png)
-=== "Method Invocation at Line 5"
-    ![Invoke Constructor](image/method-call-example-methodInvocationatLine5.png)
-=== "After Line 5"
-    ![End of Constructor](image/method-call-example-afterLine5.png)
+=== "After Lines 1-2: p1 and p2 objects created"
+    ![After Lines 1-2: p1 and p2 objects created](image/method-call-example-1.png)
+=== "After Lines 3-4: x and y primitives assigned"
+    ![After Lines 3-4: x and y primitives assigned](image/method-call-example-2.png)
+=== "Line 5: move method invoked"
+    ![Line 5: move method invoked](image/method-call-example-3.png)
+=== "Method completes, frame poped, p1 updated"
+    ![Method completes, frame poped, p1 updated](image/method-call-example-4.png)
 
 - Each method call creates a new stack frame
 - The frame is destroyed when the method returns

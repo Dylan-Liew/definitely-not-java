@@ -60,7 +60,6 @@ theme:
   features:
     - navigation.instant
     - navigation.sections 
-    - content.tabs.link
   palette:
     # Light Mode
     - media: "(prefers-color-scheme: dark)"

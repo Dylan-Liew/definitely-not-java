@@ -132,4 +132,3 @@
 - Document inheritance relationships
 - Keep inheritance hierarchies shallow
 - Consider making classes final if not meant for inheritance
- 

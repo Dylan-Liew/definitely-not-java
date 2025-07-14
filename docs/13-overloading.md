@@ -15,9 +15,10 @@
 
 ## Method Signature Components
 - Method name
-- Parameter types
-- Parameter order
 - Number of parameters
+- Types of parameters
+- Order of parameters
+- Class name (Optional)
 - Does NOT include:
     - Return type
     - Parameter names
@@ -27,14 +28,14 @@
 - Valid overloading:
   ```java
   void process(int x, double y) { }
-  void process(double x, int y) { }    // different parameter order
-  void process(int x, int y, int z) { } // different number of parameters
+  void process(double x, int y) { }    // Different parameter order
+  void process(int x, int y, int z) { } // Different number of parameters
   ```
 - Invalid overloading:
   ```java
   int process(int x, int y) { }
-  double process(int x, int y) { }     // only return type differs
-  void process(int a, int b) { }       // only parameter names differ
+  double process(int x, int y) { }     // Only return type differs
+  void process(int a, int b) { }       // Only parameter names differ
   ```
 
 ## Constructor Overloading
@@ -44,8 +45,8 @@
   ```java
   class Circle {
     public Circle(Point center, double radius) { }
-    public Circle() {  // default constructor
-      this(new Point(0, 0), 1.0);  // calls other constructor
+    public Circle() {  // Default constructor
+      this(new Point(0, 0), 1.0);  // Calls other constructor
     }
   }
   ```

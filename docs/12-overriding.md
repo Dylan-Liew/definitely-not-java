@@ -20,6 +20,10 @@
         - Types of parameters
         - Order of parameters
         - Class name (Optional)
+    - Does NOT include:
+        - Return type
+        - Parameter names
+        - Access modifiers
 
 - Method Descriptor
     - Includes everything in the method signature + return type

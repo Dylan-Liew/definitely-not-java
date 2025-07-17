@@ -15,7 +15,7 @@
   i.speak(); // prints: Cat meows
   ```
 
-## The `equals` method
+## The `equals` Method
 - Object::equals(Object) compares if two object references refer to the same object. 
 - The reference is the memory address of objects
 - Properties:

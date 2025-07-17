@@ -2,6 +2,7 @@
 
 ## Polymorphism Concept
 - Ability of object reference variables to take multiple forms
+- Ability of object reference variables to take multiple forms
 - Method behavior depends on object's runtime type
 - Enables code reuse and flexibility
 - Example:
@@ -75,8 +76,23 @@
 
   // If runtime type of curr is Circle, invoke Circle::equals(Object)
   // If runtime type of curr is Point, invoke Point::equals(Object)
+  boolean contains(Object[] array, Object obj) {
+    for (Object curr : array) {
+      if (curr.equals(obj)) {
+        return true;
+      }
+    }
+    return false;
+  }
+   // At compile time, the type is known as Object 
+
+  // Based on the runtime type of curr, the customised version of equals can be called to compare against obj.
+
+  // If runtime type of curr is Circle, invoke Circle::equals(Object)
+  // If runtime type of curr is Point, invoke Point::equals(Object)
   ```
 
+## Type Casting 
 ## Type Casting 
 - Converting between supertype and subtype
 - Widening conversion (subtype to supertype):
@@ -128,6 +144,22 @@
 - Always check with instanceof before casting
 - Document expected behavior of polymorphic methods
 
+> Notes:
+
+> - Java array
+    - 2 ways to declare:
+        - `Type[] var`
+        - `Type var[]`
+    - Array type is a class, it is a subtype of Object
+    - Created in the bytecode using the bytecode instruction `anewarray` in JVM
+    - JVM uses `multianewarray` bytecode to allocate multi-dimensional array (e.g., `B[][]`)
+    - Array is an instance of a special class following covariant rule
+    - Array is also following the basic rule of being a subtype of Object 
+    - When declaring an array of type `A`, Java creates an internal class named like `[LA;`
+        - This name is not legal in Java source code, but is used internally
+    - When declaring a subtype of class `A` such as class `B`, the type of array `[LB;` is automatically created
+    - Arrays in Java have a field length, not a method
+        - That is why use `arr.length`, not `arr.length()`
 > Notes:
 
 > - Java array

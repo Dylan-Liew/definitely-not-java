@@ -93,7 +93,6 @@
   ```
 
 ## Type Casting 
-## Type Casting 
 - Converting between supertype and subtype
 - Widening conversion (subtype to supertype):
     - Automatic
@@ -161,18 +160,3 @@
     - Arrays in Java have a field length, not a method
         - That is why use `arr.length`, not `arr.length()`
 > Notes:
-
-> - Java array
-    - 2 ways to declare:
-        - `Type[] var`
-        - `Type var[]`
-    - Array type is a class, it is a subtype of Object
-    - Created in the bytecode using the bytecode instruction `anewarray` in JVM
-    - JVM uses `multianewarray` bytecode to allocate multi-dimensional array (e.g., `B[][]`)
-    - Array is an instance of a special class following covariant rule
-    - Array is also following the basic rule of being a subtype of Object 
-    - When declaring an array of type `A`, Java creates an internal class named like `[LA;`
-        - This name is not legal in Java source code, but is used internally
-    - When declaring a subtype of class `A` such as class `B`, the type of array `[LB;` is automatically created
-    - Arrays in Java have a field length, not a method
-        - That is why use `arr.length`, not `arr.length()`

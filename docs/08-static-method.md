@@ -46,7 +46,7 @@
   }
   ```
 
-## The main Method
+## The `main` Method
 - Special static method as program entry point
 - Required signature:
   ```java

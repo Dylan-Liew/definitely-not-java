@@ -110,7 +110,7 @@
   }
   ```
 
-## Using super with Overridden Methods
+## Using `super` with Overridden Methods
 - Access parent class's version using `super`
 - Useful when extending behavior
 - Example:

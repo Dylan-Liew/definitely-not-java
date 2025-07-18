@@ -2,6 +2,7 @@
 
 ## Polymorphism Concept
 - Ability of object reference variables to take multiple forms
+- Ability of object reference variables to take multiple forms
 - Method behavior depends on object's runtime type
 - Enables code reuse and flexibility
 - Example:
@@ -15,7 +16,7 @@
   i.speak(); // prints: Cat meows
   ```
 
-## The `equals` method
+## The `equals` Method
 - Object::equals(Object) compares if two object references refer to the same object. 
 - The reference is the memory address of objects
 - Properties:
@@ -61,6 +62,20 @@
 - Also called late binding
 - Example:
   ```java
+  boolean contains(Object[] array, Object obj) {
+    for (Object curr : array) {
+      if (curr.equals(obj)) {
+        return true;
+      }
+    }
+    return false;
+  }
+   // At compile time, the type is known as Object 
+
+  // Based on the runtime type of curr, the customised version of equals can be called to compare against obj.
+
+  // If runtime type of curr is Circle, invoke Circle::equals(Object)
+  // If runtime type of curr is Point, invoke Point::equals(Object)
   boolean contains(Object[] array, Object obj) {
     for (Object curr : array) {
       if (curr.equals(obj)) {
@@ -144,3 +159,4 @@
     - When declaring a subtype of class `A` such as class `B`, the type of array `[LB;` is automatically created
     - Arrays in Java have a field length, not a method
         - That is why use `arr.length`, not `arr.length()`
+> Notes:

@@ -1,11 +1,65 @@
 # Liskov Substitution Principle Summary
 
 ## LSP Definition
+- Programmer's responsibility to follow the LSP
 - Subtype must be completely substitutable for its supertype
-- Subtype must preserve behavior expected of supertype
+- A subclass should not break the expectations set by the superclass.
 - **Formal Definition**: Let φ(x) be a property provable about objects x of type T. Then φ(y) should be true for objects y of type S where S <: T
 - A subclass should pass all test cases of its superclass
+- Example:
+  ```java
+  // Superclass Restaurant
+  public class Restaurant {
+    public static final int OPENING_HOUR = 1200;
+    public static final int CLOSING_HOUR = 2200;
 
+    public boolean canMakeReservation(int time) {
+      if (time <= CLOSING_HOUR && time >= OPENING_HOUR) {
+        return true;
+      }
+      return false;
+    }
+  }
+  ```
+  ```java
+  // Subclass LunchRestaurant
+  public class LunchRestaurant extends Restaurant {
+    private final int peakHourStart = 1200;
+    private final int peakHourEnd = 1400;
+
+    @Override
+    public boolean canMakeReservation(int time) {
+      if (time <= peakHourEnd && time >= peakHourStart) {
+        return false;
+      } else if (time <= CLOSING_HOUR && time >= OPENING_HOUR) {
+        return true;
+      }
+      return false;
+    }
+  }
+  ```
+  ```java
+  // Subclass LunchRestaurant
+  public class DigitalReadyRestaurant extends Restaurant {
+
+    @Override
+    public boolean canMakeReservation(int time) {
+      return true;
+    }
+  }
+  ```
+  ```java
+  Restaurant r = new LunchRestaurant();
+  r.canMakeReservation(1200) == true; // Is false, therefore test fails
+  r.canMakeReservation(2200) == true; // Is true, therefore test passes
+  // LunchRestaurant violates LSP
+
+  Restaurant r = new DigitalReadyRestaurant();
+  r.canMakeReservation(1200) == true; // Is true, therefore test passes
+  r.canMakeReservation(2200) == true; // Is true, therefore test passes
+  // DigitalReadyRestaurant is substitutable for Restaurant
+  ```
+  
 ## Preventing Inheritance
 - Use `final` keyword to prevent inheritance
 - Example:
@@ -26,6 +80,15 @@ class Circle {
   }
 }
 ```
+## Preventing Field Re-assignment
+- Use `final` keyword on methods
+- Prevents re-assignment to the field
+- Example:
+```java
+class Queue {
+  final static int id = 1;
+}
+```
 
 ## Best Practices
 - Design inheritance hierarchies carefully
@@ -35,3 +98,26 @@ class Circle {
 - Consider composition over inheritance
 - Make classes immutable when possible
 - Write clear specifications for methods
+
+> Notes:
+
+> - Use assert to check key properties
+    - Example:
+      ```java
+      Circle c1 = new Circle(5);
+      Circle c2 = new Circle(5);
+      Circle c3 = new Circle(5);
+
+      // Reflexive
+      assert c1.equals(c1);
+
+      // Symmetric
+      assert c1.equals(c2);
+      assert c2.equals(c1);
+
+      // Transitive
+      assert c1.equals(c2);
+      assert c2.equals(c3);
+      assert c1.equals(c3);
+      ```
+  - The test cases described in this unit about Restaurant are known as black-box tests

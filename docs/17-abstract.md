@@ -1,7 +1,7 @@
 # Abstract Class Summary
 
 ## Abstract Class Concept
-- Share common behvaiors for similar classes to inherit
+- Share common behaviors for similar classes to inherit
 - Model an IS-A relationship (`Circle` IS-A `Shape`)
 - Declared using `abstract` keyword
 - Example:
@@ -18,10 +18,10 @@
 > Notes:
 
 > - Abstract class cannot be instantiated
-  - Class must be abstract if it has abstact methods
+  - Class must be abstract if it has abstract methods
   - Can contain abstract methods, concrete methods and fields
   - Can have no abstract methods
-  - Can have constrcutors for subclasses to call
+  - Can have constructors for subclasses to call
 
 ## Abstract Methods
 - Methods without implementation
@@ -86,7 +86,7 @@
 
 ## Best Practices
 - Use abstract classes to define base behavior
-- Keep abstract classes focused and cohesive
+- Keep abstract classes focused and cohesive (i.e., all methods and fields should serve a clear purpose)
 - Document expected behavior of abstract methods
 - Consider interfaces for pure abstractions
 - Use meaningful names for abstract classes

@@ -1,21 +1,63 @@
 # Interface Summary
 
 ## Interface Concept
-- Contract specifying behavior
-- Collection of abstract methods
-- Can have constants (public static final)
+- Specify a contract to supply behaviors for classes to implement
+- A collection of abstract methods
 - Declared using `interface` keyword
 - Example:
   ```java
+  // Every class that needs getArea() can implement this interface
   interface GetAreable {
     double getArea();  // implicitly public abstract
   }
+  
+
+  // Abstract class
+  abstract class Shape implements GetAreable {
+    private int numOfAxesOfSymmetry;
+
+    public boolean isSymmetric() {
+      return numOfAxesOfSymmetry > 0;
+    }
+  } 
+
+  // Concrete class
+  class Flat extends RealEstate implements GetAreable {
+    private String block;
+        :
+
+    @Override
+    public double getArea() {
+        :
+    }
+  }
+
+  // Array with the interface constraints
+  double findLargest(GetAreable[] array) { // Elements must already implemented GetAreable()
+    double maxArea = 0;
+    for (GetAreable curr : array) {
+      double area = curr.getArea();
+      if (area > maxArea) {
+        maxArea = area;
+      } 
+    }
+    return maxArea;
+  }
   ```
+
+> Notes:
+
+> - All abstract methods in interfaces are `public abstract` implicitly
+      - Cannot be `private` or `final`
+  - Non-abstract methods in interfaces must be `default` or `static` or `private`
+  - All fields in interfaces are `public static final` implicitly
+      - A compile-time constant
+      - Cannot be `private`
+  - Interfaces cannot have constructors
+  - Interfaces cannot be instantiated 
 
 ## Implementing Interfaces
 - Classes use `implements` keyword
-- Can implement multiple interfaces
-- Must implement all methods
 - Example:
   ```java
   class Circle implements GetAreable {
@@ -26,18 +68,17 @@
   }
   ```
 
-## Interface Characteristics
-- All methods implicitly public abstract
-- All fields implicitly public static final
-- Cannot have constructor
-- Cannot be instantiated
-- Can extend multiple interfaces
-- Example:
-  ```java
-  interface Drawable extends GetAreable {
-    void draw();  // adds another abstract method
-  }
-  ```
+> Notes:
+
+> - A class can implement multiple interfaces
+  - Must implement (@Override) all methods in interfaces
+  - Interfaces can extend one or more interfaces
+  - Example:
+    ```java
+    interface Drawable extends GetAreable {
+      void draw();  // adds another abstract method
+    }
+    ```
 
 ## Multiple Interface Implementation
 - Class can implement many interfaces
@@ -55,18 +96,43 @@
   }
   ```
 
+## Casting Using an Interface
+- There is the possibility that a subclass could implement the interface.
+- So compiler lets the cast through
+- Example:
+  ```java
+  interface I {
+  :
+  }
+
+  class A {
+    :
+  }
+
+  class B implements I {
+    :
+  }
+  ```
+  ```java
+  I i1 = new B(); // Compiles, widening type conversion
+  I i2 = (I) new A(); // Compiles, but throws ClassCastException at run‑time because A doesn’t implement I
+  A a = (A) new B(); // Does not compile
+  B a = (B) new A(); // Does not compile
+  ```
 ## Interface vs Abstract Class
 - Interface:
     - Pure abstraction
     - Multiple implementation
-    - No state
-    - All methods public
+    - No state (instance fields are not allowed)
+    - All methods must be public
   
 - Abstract Class:
     - Partial implementation
     - Single inheritance
     - Can have state
-    - Methods any visibility
+    - Abstract methods cannot be private only 
+    - Concrete methods can be any visibility options
+
 
 ## Best Practices
 - Use interfaces to define behavior

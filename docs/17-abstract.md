@@ -38,6 +38,7 @@
 
 > - All abstract methods must be implemented by concrete subclasses
   - Abstract methods cannot be private or final
+  - Subclasses must override all inherited abstract methods from that abstract class
 
 ## Concrete Classes
 - Classes that implement all abstract methods
@@ -54,13 +55,6 @@
     }
   }
   ```
-
-## Abstract Class Rules
-- Cannot create instance of abstract class
-- Class must be abstract if it has abstract methods
-- Abstract class can have concrete methods
-- Abstract class can have fields
-- Can have constructors (called by subclasses)
 
 ## When to Use Abstract Classes
 - Define common characteristics of related classes

@@ -2,7 +2,6 @@
 
 ## Polymorphism Concept
 - Ability of object reference variables to take multiple forms
-- Ability of object reference variables to take multiple forms
 - Method behavior depends on object's runtime type
 - Enables code reuse and flexibility
 - Example:
@@ -142,21 +141,3 @@
 - Cast only when necessary
 - Always check with instanceof before casting
 - Document expected behavior of polymorphic methods
-
-> Notes:
-
-> - Java array
-    - 2 ways to declare:
-        - `Type[] var`
-        - `Type var[]`
-    - Array type is a class, it is a subtype of Object
-    - Created in the bytecode using the bytecode instruction `anewarray` in JVM
-    - JVM uses `multianewarray` bytecode to allocate multi-dimensional array (e.g., `B[][]`)
-    - Array is an instance of a special class following covariant rule
-    - Array is also following the basic rule of being a subtype of Object 
-    - When declaring an array of type `A`, Java creates an internal class named like `[LA;`
-        - This name is not legal in Java source code, but is used internally
-    - When declaring a subtype of class `A` such as class `B`, the type of array `[LB;` is automatically created
-    - Arrays in Java have a field length, not a method
-        - That is why use `arr.length`, not `arr.length()`
-> Notes:

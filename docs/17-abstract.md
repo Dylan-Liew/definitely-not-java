@@ -1,8 +1,8 @@
 # Abstract Class Summary
 
 ## Abstract Class Concept
-- Class that cannot be instantiated
-- May contain abstract and concrete methods
+- Share common behvaiors for similar classes to inherit
+- Model an IS-A relationship (`Circle` IS-A `Shape`)
 - Declared using `abstract` keyword
 - Example:
   ```java
@@ -15,17 +15,29 @@
   }
   ```
 
+> Notes:
+
+> - Abstract class cannot be instantiated
+  - Class must be abstract if it has abstact methods
+  - Can contain abstract methods, concrete methods and fields
+  - Can have no abstract methods
+  - Can have constrcutors for subclasses to call
+
 ## Abstract Methods
 - Methods without implementation
-- Must be implemented by concrete subclasses
 - Declared using `abstract` keyword
-- Cannot be private or final
+
 - Example:
   ```java
   abstract class Shape {
     abstract double getArea();  // subclasses must implement
   }
   ```
+
+> Notes:
+
+> - All abstract methods must be implemented by concrete subclasses
+  - Abstract methods cannot be private or final
 
 ## Concrete Classes
 - Classes that implement all abstract methods

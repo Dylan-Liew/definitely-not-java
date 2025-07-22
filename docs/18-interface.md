@@ -1,12 +1,12 @@
 # Interface Summary
 
 ## Interface Concept
-- Specify a contract to supply behaviors for classes to implement
+- Specify a contract that specifies what methods a class must implement
 - A collection of abstract methods
 - Declared using `interface` keyword
 - Example:
   ```java
-  // Every class that needs getArea() can implement this interface
+  // Interface defining a contract for objects that have an area
   interface GetAreable {
     double getArea();  // implicitly public abstract
   }
@@ -33,7 +33,7 @@
   }
 
   // Array with the interface constraints
-  double findLargest(GetAreable[] array) { // Elements must already implemented GetAreable()
+  double findLargest(GetAreable[] array) {
     double maxArea = 0;
     for (GetAreable curr : array) {
       double area = curr.getArea();
@@ -68,20 +68,9 @@
   }
   ```
 
-> Notes:
-
-> - A class can implement multiple interfaces
-  - Must implement (@Override) all methods in interfaces
-  - Interfaces can extend one or more interfaces
-  - Example:
-    ```java
-    interface Drawable extends GetAreable {
-      void draw();  // adds another abstract method
-    }
-    ```
-
 ## Multiple Interface Implementation
-- Class can implement many interfaces
+- Class can `implements` many interfaces
+- Interfaces can `extends` one or more interfaces
 - Must implement all methods from all interfaces
 - Example:
   ```java
@@ -97,28 +86,29 @@
   ```
 
 ## Casting Using an Interface
-- There is the possibility that a subclass could implement the interface.
-- So compiler lets the cast through
+- The compiler allows casting to an interface type because a subclass may implement that interface.
+- However, if the actual object does not implement the interface, a `ClassCastException` will be thrown at runtime.
 - Example:
   ```java
   interface I {
-  :
+    // interface methods
   }
 
   class A {
-    :
+    // class A implementation
   }
 
   class B implements I {
-    :
+    // class B implementation
   }
   ```
   ```java
-  I i1 = new B(); // Compiles, widening type conversion
-  I i2 = (I) new A(); // Compiles, but throws ClassCastException at run‑time because A doesn’t implement I
-  A a = (A) new B(); // Does not compile
-  B a = (B) new A(); // Does not compile
+  I i1 = new B();           // Valid: B implements I, assigned to interface reference
+  I i2 = (I) new A();       // Compiles, but throws ClassCastException at runtime (A does not implement I)
+  A a = (A) new B();        // Compile-time error: incompatible types
+  B b = (B) new A();        // Compile-time error: incompatible types
   ```
+  
 ## Interface vs Abstract Class
 - Interface:
     - Pure abstraction

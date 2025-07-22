@@ -1,7 +1,6 @@
 # Abstract Class Summary
 
 ## Abstract Class Concept
-- Share common behaviors for similar classes to inherit
 - Model an IS-A relationship (`Circle` IS-A `Shape`)
 - Declared using `abstract` keyword
 - Example:
@@ -70,9 +69,9 @@
       this.name = name;
     }
     
-    abstract void makeSound();  // each animal sounds different
+    abstract void makeSound();
     
-    void sleep() {             // common to all animals
+    void sleep() {
       System.out.println("Zzz");
     }
   }

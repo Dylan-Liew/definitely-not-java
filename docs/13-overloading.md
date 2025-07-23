@@ -1,9 +1,8 @@
 # Method Overloading Summary
 
 ## Method Overloading Concept
-- Multiple methods with same name but different parameters
-- Differs from overriding (which uses same parameters)
-- Based on method signature differences
+- Multiple methods with same name but different parameters 
+- Based on [method signature](12-overriding.md#method-signature) differences
 - Example:
   ```java
   class Calculator {
@@ -13,22 +12,12 @@
   }
   ```
 
-## Method Signature Components
-- Method name
-- Number of parameters
-- Types of parameters
-- Order of parameters
-- Class name (Optional)
-- Does NOT include:
-    - Return type
-    - Parameter names
-    - Access modifiers
-
 ## Valid vs Invalid Overloading
 - Valid overloading:
   ```java
   void process(int x, double y) { }
   void process(double x, int y) { }    // Different parameter order
+  void process (double x, double y) { } // Different parameter types
   void process(int x, int y, int z) { } // Different number of parameters
   ```
 - Invalid overloading:
@@ -39,14 +28,25 @@
   ```
 
 ## Constructor Overloading
-- Multiple constructors with different parameters
-- Common for providing different initialization options
+- Constructors can also be overloaded
+- Multiple constructors with different parameters provide flexibility for object initialization
 - Example:
   ```java
   class Circle {
-    public Circle(Point center, double radius) { }
+    private Point center;
+    private double radius; 
+
+    public Circle(Point center, double radius) { 
+      this.center = center;
+      this.radius = radius;
+    }
+
     public Circle() {  // Default constructor
       this(new Point(0, 0), 1.0);  // Calls other constructor
+    }
+
+    public Circle(double radius) {  // Single parameter constructor
+      this(new Point(0, 0), radius);
     }
   }
   ```

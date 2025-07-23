@@ -7,7 +7,7 @@
     - `toString()`: String representation
     - `hashCode()`: Hash value
     - Others like `clone()`, `finalize()`
-    - specific reference: `Object::equals(Object)`
+    - Specific reference: `Object::equals(Object)`
         - The method is defined in class `Object`
         - The method takes one `Object` parameter
 
@@ -27,13 +27,6 @@
 
 - Method Descriptor
     - Includes everything in the method signature + return type
-    - The information captured are:
-        - Method name
-        - Number of parameters
-        - Types of parameters
-        - Order of parameters
-        - Return type
-        - Class name (Optional)
 
 - Class names are included for mentioning a specific implementation
 - Exclude the class names to talk about the method regardless of where it is implemented 

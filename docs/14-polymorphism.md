@@ -29,30 +29,30 @@
   Circle c0 = new Circle(new Point(0, 0), 10);
   Circle c1 = new Circle(new Point(0, 0), 10);
   Circle c2 = c1;
-  // c2.equals(c1) returns true
-  // c0.equals(c1) returns false
+  // c2.equals(c1) returns true (same object reference)
+  // c0.equals(c1) returns false (different objects in memory)
 
-  // Even though c0 and c1 are semantically the same, 
-  // but they are still 2 different objects with different memory addresses
+  // Even though c0 and c1 are semantically identical,
+  // they are different objects with different memory addresses
   ```
-- Override the `equals` method to compare objects semantically
-- Overriding example:
+
+## Overriding equals for Semantic Equality
+- To compare objects based on their content rather than memory address, override the `equals` method:
   ```java
   @Override
   public boolean equals(Object obj) {
+    if (this == obj) return true;
     if (obj instanceof Circle) {
       Circle circle = (Circle) obj;
       return (circle.c.equals(this.c) && circle.r == this.r);
     }
     return false;
   }
-  // Takes in Object parameter, check runtime type of the parameter is an instance of Circle
-  // Explicitly downcast is needed to avoid complier error as the complie type of the parameter is Object
-  
-  // A class can access the private members of any object of the same class,
-  // so that fields c and r are accessible even they are not belong to current Object
-
-  // Override must have same method descriptor as parent
+  // Must take Object parameter
+  // Use instanceof or getClass() to check runtime type before casting
+  // Explicit downcast needed to access subclass-specific fields
+  // A class can access private members of any object of the same class
+  // Override must have the same method descriptor as the parent class
   ```
 
 ## Dynamic Binding
@@ -69,26 +69,12 @@
     }
     return false;
   }
-   // At compile time, the type is known as Object 
 
-  // Based on the runtime type of curr, the customised version of equals can be called to compare against obj.
-
-  // If runtime type of curr is Circle, invoke Circle::equals(Object)
-  // If runtime type of curr is Point, invoke Point::equals(Object)
-  boolean contains(Object[] array, Object obj) {
-    for (Object curr : array) {
-      if (curr.equals(obj)) {
-        return true;
-      }
-    }
-    return false;
-  }
-   // At compile time, the type is known as Object 
-
-  // Based on the runtime type of curr, the customised version of equals can be called to compare against obj.
-
-  // If runtime type of curr is Circle, invoke Circle::equals(Object)
-  // If runtime type of curr is Point, invoke Point::equals(Object)
+  // At compile time, curr is known as Object type
+  // At runtime, based on curr's actual type:
+  // - If curr is Circle, invoke Circle.equals(Object)
+  // - If curr is Point, invoke Point.equals(Object)  
+  // - If curr is String, invoke String.equals(Object)
   ```
 
 ## Type Casting 
@@ -97,15 +83,20 @@
     - Automatic
     - Always safe
   ```java
-  Circle c = new Circle(p, 1.0);
-  Shape s = c;  // widening, no cast needed
+  Circle c = new Circle(new Point(0, 0), 1.0);
+  Shape s = c;  // Widening conversion - no cast needed
+  Object obj = c;  // Also widening - completely safe
   ```
 - Narrowing conversion (supertype to subtype):
     - Requires explicit cast
     - May cause runtime errors
   ```java
-  Shape s = new Circle(p, 1.0);
-  Circle c = (Circle) s;  // narrowing, needs cast
+  Shape s = new Circle(new Point(0, 0), 1.0);
+  Circle c = (Circle) s;  // Narrowing conversion - explicit cast required
+
+  // Dangerous without checking:
+  Shape s2 = new Rectangle(1, 2);
+  Circle c2 = (Circle) s2;  // ClassCastException at runtime!
   ```
 
 ## instanceof Operator
@@ -113,9 +104,14 @@
 - Used before casting to prevent errors
 - Example:
   ```java
-  if (obj instanceof Circle) {
-    Circle c = (Circle) obj;  // safe cast
-    // use c
+  public void processShape(Shape shape) {
+      if (shape instanceof Circle) {
+          Circle c = (Circle) shape;  // Safe cast
+          System.out.println("Circle with radius: " + c.getRadius());
+      } else if (shape instanceof Rectangle) {
+          Rectangle r = (Rectangle) shape;  // Safe cast
+          System.out.println("Rectangle: " + r.getWidth() + "x" + r.getHeight());
+      }
   }
   ```
 

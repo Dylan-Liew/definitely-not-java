@@ -7,7 +7,7 @@
     - `toString()`: String representation
     - `hashCode()`: Hash value
     - Others like `clone()`, `finalize()`
-    - specific reference: `Object::equals(Object)`
+    - Specific reference: `Object::equals(Object)`
         - The method is defined in class `Object`
         - The method takes one `Object` parameter
 

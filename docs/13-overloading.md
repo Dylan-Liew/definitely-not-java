@@ -17,7 +17,7 @@
   ```java
   void process(int x, double y) { }
   void process(double x, int y) { }    // Different parameter order
-  void process (double x, double y) { } // Different parameter type
+  void process (double x, double y) { } // Different parameter types
   void process(int x, int y, int z) { } // Different number of parameters
   ```
 - Invalid overloading:

@@ -1,7 +1,7 @@
 # Interface Summary
 
 ## Interface Concept
-- Specify a contract that specifies what methods a class must implement
+- Specify a contract that defines what methods a class must implement
 - A collection of abstract methods
 - Declared using `interface` keyword
 - Example:

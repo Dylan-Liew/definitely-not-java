@@ -20,12 +20,17 @@
 > Notes: [Launch Single-File Source-Code Programs](https://openjdk.org/jeps/330) allows running Java files without explicit compilation. E.g. `java Hello.java`
 
 ## Java Shell (`jshell`)
-- Interactive tool for Java code evaluation
-- Allows direct code testing without compilation
-- Useful for learning and experimentation
-- Can run in two modes:
-      - Interactive mode
-      - Script mode with .jsh files
+-  `jshell` is a REPL (Read–Eval–Print Loop) for Java introduced in Java 9. 
+- Start it by running:
+  ```bash
+  jshell
+  ```
+- Modes:
+    - Interactive mode for experimentation.
+    - Script mode using `.jsh` files.
+- Usage notes:
+    - Useful for quick testing, learning, and prototyping without creating full source files.
+    - You can declare variables, define methods, and call APIs directly in the REPL.
 
 ## Compiler Functions
 - Translates source code to machine code/bytecode

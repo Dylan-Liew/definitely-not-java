@@ -55,8 +55,8 @@ nav:
   - 41. Package: '41-package.md'
 theme:
   name: material
-  logo: assets/dlogo.png 
-  favicon: assets/dlogo.png 
+  # logo: assets/dlogo.png 
+  # favicon: assets/dlogo.png 
   features:
     - navigation.instant
     - navigation.sections 

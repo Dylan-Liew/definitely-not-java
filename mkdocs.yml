@@ -72,7 +72,7 @@ theme:
     # Dark Mode
     - media: "(prefers-color-scheme: light)"
       scheme: slate
-      primary: white
+      primary: black
       accent: custom
       toggle:
         icon: material/weather-night

@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;600;700&display=swap');
 
-
 :root {
   --font-sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --md-accent-fg-color:                grey;
@@ -16,7 +15,7 @@ textarea,
 select {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: grayscale
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -24,6 +23,19 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
 }
 
+.md-content h1 {
+  margin-bottom: 20px;
+}
+
+.md-content h2 {
+  margin-top: 25px;
+  color: white;
+}
+
 code, pre {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Courier New", monospace;
+}
+
+.md-main {
+  margin-top: -33px;
 }
